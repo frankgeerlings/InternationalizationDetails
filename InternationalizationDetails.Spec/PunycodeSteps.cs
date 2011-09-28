@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentAssertions;
+﻿using FluentAssertions;
+using InternationalizationDetails.EmailAddress;
 using TechTalk.SpecFlow;
 
 namespace InternationalizationDetails.Spec
@@ -21,20 +18,14 @@ namespace InternationalizationDetails.Spec
 		[When(@"it is converted to PunyCode")]
 		public void WhenItIsConvertedToPunyCode()
 		{
-			var sut = new PunycodeConverter();
-			_result = sut.ConvertEmailAddressToIdn(_inputAddress);
+			var sut = new InternationalEmailAddress(_inputAddress);
+			_result = sut.AsMailAddress().Address;
 		}
 
 		[Then(@"the result should be (.*?)")]
 		public void ThenTheResultShouldBe(string actual)
 		{
 			actual.Should().Be(_result);
-		}
-
-		[Given(@"the following IDN e-mail addresses and their Punycode counterparts:")]
-		public void GivenTheFollowingIDNE_MailAddressesAndTheirPunycodeCounterparts(Table table)
-		{
-			ScenarioContext.Current.Pending();
 		}
 	}
 }
