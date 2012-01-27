@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>InternationalizationDetails</id>
+        <version>0.0.1</version>
+        <authors>Frank Geerlings</authors>
+        <description>This is an example of a nuspec file</description>
+        <tags>i18n l17n internationalization localization</tags>
+        <language>en-US</language>
+    </metadata>
+    <files>
+	<file src="bin\Debug\InternationalizationDetails.dll" target="lib" />
+	<file src="bin\Debug\InternationalizationDetails.xml" target="lib" />
+    </files>
+</package>
