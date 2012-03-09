@@ -1,0 +1,11 @@
+*.user
+*.suo
+*.dotCover
+*.ncrunchproject
+*.ncrunchsolution
+*.crunchsolution.cache
+bin/
+obj/
+packages
+Deliverables
+StyleCop.Cache
