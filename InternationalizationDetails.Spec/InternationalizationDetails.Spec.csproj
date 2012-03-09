@@ -60,6 +60,7 @@
       <DependentUpon>IDN e-mail addresses.feature</DependentUpon>
     </Compile>
     <Compile Include="PunycodeSteps.cs" />
+    <Compile Include="UnitTest\EmailAddressTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

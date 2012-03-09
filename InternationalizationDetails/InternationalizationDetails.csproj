@@ -43,7 +43,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="InternationalizationDetails.nuspec" />
+    <None Include="InternationalizationDetails.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
@@ -51,7 +53,7 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
-  <Target Name="AfterBuild">
+  <Target Name="AfterBuild" Condition="$(NCrunch) != '1'">
     <MakeDir Directories="$(MSBuildProjectDirectory)\..\Deliverables" />
     <Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="$(BuildDir)..\.NuGet\nuget.exe pack -NoPackageAnalysis -OutputDirectory ..\Deliverables" />
   </Target>

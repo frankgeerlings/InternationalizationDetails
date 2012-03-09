@@ -8,9 +8,14 @@ namespace InternationalizationDetails.EmailAddress
 		private readonly IdnMapping _mapping = new IdnMapping();
 
 		public string User { get; set; }
+
+		public string DisplayName { get; set; }
+
 		public string HostnamePartAsIdn { get; set; }
 
-		public InternationalEmailAddress(string emailAddress)
+		public InternationalEmailAddress(string emailAddress) : this(emailAddress, null) {}
+
+		public InternationalEmailAddress(string emailAddress, string displayName)
 		{
 			// We need to split the e-mail address in the user and domain parts first.
 			var x = emailAddress.Split('@');
@@ -27,6 +32,8 @@ namespace InternationalizationDetails.EmailAddress
 			{
 				HostnamePartAsUnicode = domain;
 			}
+
+			this.DisplayName = displayName;
 		}
 
 		public string HostnamePartAsUnicode {
@@ -36,14 +43,16 @@ namespace InternationalizationDetails.EmailAddress
 
 		public MailAddress AsMailAddress()
 		{
-			return AsMailAddress(null);
+			return string.IsNullOrWhiteSpace(DisplayName)
+				? new MailAddress(User + "@" + HostnamePartAsIdn)
+				: new MailAddress(User + "@" + HostnamePartAsIdn, DisplayName);
 		}
 
-		public MailAddress AsMailAddress(string displayName)
+		public static implicit operator InternationalEmailAddress(MailAddress mailAddress)
 		{
-			return string.IsNullOrWhiteSpace(displayName)
-				? new MailAddress(User + "@" + HostnamePartAsIdn)
-				: new MailAddress(User + "@" + HostnamePartAsIdn, displayName);
+			return string.IsNullOrWhiteSpace(mailAddress.DisplayName)
+				? new InternationalEmailAddress(mailAddress.Address)
+				: new InternationalEmailAddress(mailAddress.Address, mailAddress.DisplayName);
 		}
 	}
 }
