@@ -2,9 +2,9 @@
 <package>
     <metadata>
         <id>InternationalizationDetails</id>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <authors>Frank Geerlings</authors>
-        <description>This is an example of a nuspec file</description>
+        <description>When it comes to internationalization (i18n) there are a lot of details to be dealt with. This library intends to deal with some of them.</description>
         <tags>i18n l17n internationalization localization</tags>
         <language>en-US</language>
     </metadata>
